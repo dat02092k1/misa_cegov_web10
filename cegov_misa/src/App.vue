@@ -22,6 +22,11 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #fff;
+}
+</style>>
 
-</style>
