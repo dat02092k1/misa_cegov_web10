@@ -1,15 +1,18 @@
 <template>
     <div class="main">
         <div class="main__wrap">
-          <MainHeader />  
-          <MainContent />
+          <MainHeader :addFunction="onShowDialog" @onAddClick="onShowDialog" />  
+          <MainContent :addFunction="onShowDialog"  />
         </div>
+        <MainDialog :hideDialog="onHideDialog"  v-show="isShowDialog"/>
     </div>
+    
 </template>
 
 <script>
 import MainHeader from '../base/MainHeader.vue'
 import MainContent from '../base/MainContent.vue'
+import MainDialog from '../base/MainDialog.vue';
 
 export default {
   name: 'TheMain',
@@ -18,7 +21,30 @@ export default {
   },
   components: {
     MainHeader,
-    MainContent
+    MainContent,
+    MainDialog
+  },
+  methods: {
+    /*
+    click "Thêm danh hiệu"
+    Display MainDialog components 
+    that will show a form to register title
+    */
+    onShowDialog() { 
+      this.isShowDialog = true; 
+    },
+    /*
+    click "x" button
+    hide MainDialog components
+    */
+    onHideDialog() {
+      this.isShowDialog = false;
+    }
+  },
+  data() {
+    return {
+      isShowDialog: false
+    }
   }
 }
 </script>

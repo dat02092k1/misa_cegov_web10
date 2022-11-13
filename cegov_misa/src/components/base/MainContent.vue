@@ -11,7 +11,7 @@
                 <th>Loại phong trào</th>
                 <th>Trạng thái</th>  
               </tr>
-              <tr>
+              <tr @dblclick="onRowDbClick">
                 <td><input type="checkbox" name="" id=""></td>
                 <td>Lao động tiên tiến</td>
                 <td>LĐTTCX</td>
@@ -195,6 +195,20 @@
   <script>
   export default {
     name: "MainContent",
+    props: ["addFunction"],
+    methods: {
+      /*
+      show information of specified row 
+      that is double clicked 
+      */
+      onRowDbClick() {
+        try {
+          this.addFunction();
+        } catch (error) {
+          console.log("error");
+        }
+      },
+    }
   };
   </script>
   
