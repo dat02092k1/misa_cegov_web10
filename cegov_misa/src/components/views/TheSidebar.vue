@@ -27,7 +27,7 @@
         <div class="menu-item">
           <div class="icon-overview">
             <img
-              src="../../assets/icons_cegov/ic_movement_default.102c9e3d.svg"
+              src="../../assets/icons_cegov/ic_reward_default.156d6945.svg"
               alt=""
             />
           </div>
@@ -174,9 +174,14 @@ a {
 }
 
 .menu-item:hover {
-  background-color: #b5daec;
+  background-color: #eff7ff;
   color: #fe8c39;
   border-radius: 4px;
+  cursor: pointer; 
+}
+
+.menu-item:focus {
+  background-color: #fbe9e7;
 }
 
 .icon-overview {

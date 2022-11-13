@@ -169,26 +169,24 @@
             </table>
       </div>
       <div class="container-footer">
+        <div class="table__info">
+          <div>Tổng số:</div>
+          <div>13</div>
+          <div> bản ghi</div>
+        </div>
         <div class="table__paging">
-          <a href="">
-            <img src="../../assets/Icons/ic_MoveToFirst.png" alt="">
-          </a>
-          <a href="">
-            <img src="../../assets/Icons/ic_Back.png" alt="">
-          </a>
-          <span>
+          <div class="page-amount-title">
+            Số bản ghi/trang
+          </div>
+          <span class="page-count">
             <input class="ip page_control" type="number">
           </span>
-          <a href="">
-            <img src="../../assets/Icons/ic_Next.png" alt="">
-          </a>
-          <a href="">
-            <img src="../../assets/Icons/ic_MoveToLast.png" alt="">
-          </a>
-        </div>
-        <div class="table__info">
-          <span class="number__pages">1/2 trang</span>
-          <span class="number_teachers">(56 giáo viên)</span>
+          
+          <div class="page-amount">1 - 13 bản ghi</div>
+          <div class="next-page">
+            <div class="icon-arr icon-pre"></div>
+            <div class="icon-arr icon-next"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -237,9 +235,15 @@
     text-align: center;
     border:1px solid #cccccc;}
   
+  tr:hover {
+    background-color: #fbe9e7;
+    cursor: pointer;
+  }
+  
   th, td{
     border-right: 1px solid #cccccc;
     padding: 6px;
+    text-align: center;
   }
   
   /* #tr__title {
@@ -248,8 +252,34 @@
   .table_fuction {
     display: flex;
   }
-  
-  
+
+  .page-count {
+    margin: 8px;
+  }
+  .page-amount-title {
+    margin: 8px;
+  }
+  .next-page {
+    margin-left: 8px;
+    position: relative;
+  }
+  .icon-arr {
+    content: "";
+    position: absolute; 
+    background: transparent url(../../assets/icons_cegov/sprites.06b14dc5.svg) no-repeat -240px 0;
+    height: 24px;
+    width: 24px;
+  }
+
+  .icon-pre {
+    transform: rotate(-180deg);
+    top: -10px;
+  }
+
+  .icon-next {
+    right: -36px;
+    top: -9px;
+  }
   
   .ic_check {
     text-align: center;
@@ -262,6 +292,7 @@
   }
   
   .table__info {
+    display: flex;
     margin: 5px;
   }
   
@@ -285,7 +316,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     padding: 18px;
     background-color: #fff;
     box-sizing: border-box;

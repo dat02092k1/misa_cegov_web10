@@ -9,8 +9,8 @@
             class="input__search"
             placeholder="Nhập mã hoặc tên danh hiệu"
           />
-          <div class="btn__search">
-            <img src="../../assets/Icons/Ic_seerch.png" alt="" />
+          <div class="btn__search search">
+            <!-- <img src="../../assets/Icons/Ic_seerch.png" alt="" /> -->
           </div>
         </div>  
         <div class="filter">
@@ -25,13 +25,7 @@
         </div>
        
       </div>
-      <!-- <div class="main-header__right">
-        <button class="btn btn__add-new">Thêm</button>
-        <button class="btn btn__expand-more">Xuất khẩu</button>
-        <button class="btn btn__toggle">
-          <img src="../../assets/Icons/ic_More.png" alt="" />
-        </button>
-      </div> -->
+      
     </div>
   </template>
   
@@ -42,6 +36,9 @@
   </script>
   
   <style scoped>
+  ::-webkit-input-placeholder {
+    color: #e1e1e1;
+  }
   .main-header {
 
     align-items: flex-start;
@@ -72,6 +69,18 @@
     background-position: -96px -48px;
   }
   
+  .btn__search {
+    height: 24px;
+    width: 24px;
+    content: "";
+    position: absolute;
+    right: 0;
+    background: transparent url(../../assets/icons_cegov/sprites.06b14dc5.svg) no-repeat;
+  }
+
+  .search {
+    background-position: -289px -24px;
+  }
   .main-header__right {
     display: flex;
     flex-direction: row;
@@ -88,6 +97,7 @@
   .searchbox {
     display: flex;
     align-items: center;
+    position: relative;
   }
   .input__search {
     border-radius: 3.5px;
@@ -95,7 +105,12 @@
     height: 30px;
     overflow: hidden;
     padding-left: 10px;
-    padding-right: 130px;
+    padding-right: 130px; 
+  }
+
+  .input__search:focus {
+    outline: none !important;
+    border:1px solid #2979ff;
   }
   
   .btn {
