@@ -2,40 +2,36 @@
     <div class="header">
       <div class="header-left">
                     <div class="header-left__launcher">
-                      <div class="launcher__icon"></div>
+                      <div class="launcher__icon__left"></div>
                     </div>
                     <div class="header-left__logo">
-                      <!-- <a href=""><img src="../../assets/icons_cegov/ic_cegoLogo_new.89475e3e.svg" alt=""></a> -->
                       <a href="" class="a__logo"></a>
                       <a href="" class="a__title">MISA CeGov</a>
                      
                     </div>
                 </div>
-                
-                    <!-- <ul class="header-right__list">
-                        <li>
-                            <div class="header-right__school">
-                                <a href="https://emisapp.misa.vn/rc/Home.aspx" class="icon_right noti"></a>                                
-                            </div>
-                        </li>
-                        <li>
-                          <a href="" class="icon_right help"></a>
-                        </li>
 
-                        <li><a href="" class="icon_right rule">
-                          </a></li>
-                       
-                        <li>
-                          <a href="" class="icon_right setting"></a>
-                        </li>
-                        <li class="icon_avatar">
-                          <img src="../../assets/icons_cegov/getavatar.png" class="avatar" alt="">
-                        </li>
-                    </ul> -->
-                    <div class="header-right__list">
-                      
-                    </div>
-                    
+                <div class="header-right">
+                    <a class="header-right__launcher">
+                      <div class="launcher__icon_right noti"></div>
+                    </a>
+
+                    <a class="header-right__launcher">
+                      <div class="launcher__icon_right guide"></div>
+                    </a>
+
+                    <a class="header-right__launcher">
+                      <img src="../../assets/icons_cegov/ic_document_help.5a303db8.svg" alt="">
+                    </a>
+
+                    <a class="header-right__launcher">
+                      <div class="launcher__icon_right setting"></div>
+                    </a>
+
+                    <a class="header-right__launcher">
+                      <img class="item__avatar" src="../../assets/icons_cegov/getavatar.png" alt="">
+                    </a>
+                </div>
     </div>
 </template>
 
@@ -49,25 +45,6 @@ export default {
 </script>
 
 <style scoped>
-.right-btt-act {
-  height: 50% !important;
-  width: 32px; 
-  margin: auto 5px !important;
-  border-radius: 50%;
-}
-
-.right-act {
-  height: 100%;
-  width: 48px;
-  background: transparent url(../../assets/icons_cegov/sprites.06b14dc5.svg) no-repeat;
-  position: absolute; /* top:16px; */ /* left:11px; */
-  height: 24px;
-  width: 24px;
-}
-
-.right-act .noti {
-  background-position: -24px -48px;
-}
 .header {
   width: 100%;
   height: 56px;
@@ -86,19 +63,57 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    
+}
+
+.header-right {
+  font-size: 16px;
+    font-weight: 600;
+    color: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .header-left__launcher {
   padding: 0 16px;
   height: 100%;
 }
-.launcher__icon {
+
+.header-right__launcher {
+  padding: 0 16px;
+  height: 100%;
+}
+
+.header-right__launcher:hover {
+  background-color: #cdcdcd;
+  border-radius: 50%;
+  padding: 5px 5px;
+}
+.launcher__icon__left {
   height: 24px;
   width: 24px;
   background: transparent url(../../assets/icons_cegov/sprites.06b14dc5.svg) no-repeat -192px 0;
 }
 
+.launcher__icon_right {
+  height: 24px;
+  width: 24px;
+  background: transparent url(../../assets/icons_cegov/sprites.06b14dc5.svg) no-repeat;
+}
+
+.setting {
+  background-position: -264px -168px;
+}
+
+.guide {
+  background-position: -48px -48px;
+}
+
+.item__avatar {
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+}
 .header-left__logo {
   display: flex;
   align-items: center;
@@ -125,16 +140,20 @@ export default {
     /* list-style: none; */
 }
 
-.icon_right {
+.nav__item {
+  position: relative;
+}
+.item {
+  content: "";
   background: transparent url(../../assets/icons_cegov/sprites.06b14dc5.svg) no-repeat;
   height: 24px;
   width: 24px;
+  position: absolute;
 }
 
 .noti {
   background-position: -24px -48px;
 }
-.header-right__list li {
-    margin: 5px;
-}
+
+
 </style>

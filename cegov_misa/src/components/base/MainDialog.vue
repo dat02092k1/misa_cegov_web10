@@ -23,7 +23,13 @@
                   type="text"
                   maxlength="255"
                   placeholder="Nhập tên danh hiệu thi đua"
+                  v-model="title.name"
+                  v-bind:class="{'is-invalid': errors.name}"
+                  @blur="validate()"
                 />
+                <div class="feedback-invalid" v-if="errors.name">
+                  {{errors.name}}
+                </div>
               </div>
             </div>
             <div class="row">
@@ -31,7 +37,18 @@
                 <label for=""
                   >Mã danh hiệu <span class="input--required">*</span></label
                 >
-                <input id="rewardCode" placeholder="Nhập mã danh hiệu" class="ip ip--title" type="text" />
+                <input
+                  id="rewardCode"
+                  placeholder="Nhập mã danh hiệu"
+                  class="ip ip--title"
+                  type="text"
+                  v-model="title.code"
+                  v-bind:class="{'is-invalid': errors.code}"
+                  @blur="validate()"
+                />
+                <div class="feedback-invalid" v-if="errors.code">
+                  {{errors.code}}
+                </div>
               </div>
               <div class="col">
                 <label for=""
@@ -41,23 +58,22 @@
                 <div class="checkbox-select">
                   <div class="select-left">
                     <input
-                    type="checkbox"
-                    id="vehicle1"
-                    name="vehicle1"
-                    value="Bike"
-                  />
-                  <label for="vehicle1"> Cá nhân</label>
-                  </div>                  
+                      type="checkbox"
+                      id="vehicle1"
+                      name="vehicle1"
+                      value="Bike"
+                    />
+                    <label for="vehicle1"> Cá nhân</label>
+                  </div>
                   <div class="select-right">
                     <input
-                    type="checkbox"
-                    id="vehicle2"
-                    name="vehicle2"
-                    value="Car"
-                  />
-                  <label for="vehicle2"> Tập thể</label>  
-                  </div> 
-
+                      type="checkbox"
+                      id="vehicle2"
+                      name="vehicle2"
+                      value="Car"
+                    />
+                    <label for="vehicle2"> Tập thể</label>
+                  </div>
                 </div>
               </div>
             </div>
@@ -76,43 +92,46 @@
                 <div class="checkbox-select">
                   <div class="select-left">
                     <input
-                    type="checkbox"
-                    id="vehicle1"
-                    name="vehicle1"
-                    value="Bike"
-                  />
-                  <label for="vehicle1"> Thường xuyên</label>
-                  </div>                  
+                      type="checkbox"
+                      id="vehicle1"
+                      name="vehicle1"
+                      value="Bike"
+                    />
+                    <label for="vehicle1"> Thường xuyên</label>
+                  </div>
                   <div class="select-right">
                     <input
-                    type="checkbox"
-                    id="vehicle2"
-                    name="vehicle2"
-                    value="Car"
-                  />
-                  <label for="vehicle2"> Theo đợt</label>  
-                  </div> 
-
+                      type="checkbox"
+                      id="vehicle2"
+                      name="vehicle2"
+                      value="Car"
+                    />
+                    <label for="vehicle2"> Theo đợt</label>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="row1">
-              <label for="">
-                Ghi chú 
-              </label>
+              <label for=""> Ghi chú </label>
               <div class="text-area_container">
-               <textarea class="text-area_item" name="" maxlength="255" id="" cols="30" placeholder="Ghi chú" rows="10"></textarea>
+                <textarea
+                  class="text-area_item"
+                  name=""
+                  maxlength="255"
+                  id=""
+                  cols="30"
+                  placeholder="Ghi chú"
+                  rows="10"
+                ></textarea>
               </div>
             </div>
-
-            
           </div>
         </div>
       </div>
       <div class="dialog__footer">
         <button class="btn btn__close">Hủy</button>
         <button class="btn btn__addSave">Lưu & thêm mới</button>
-        <button class="btn btn__save">Lưu</button>
+        <button @click="onSaveInfo()" class="btn btn__save">Lưu</button>
       </div>
     </div>
   </div>
@@ -123,16 +142,60 @@ export default {
   name: "DialogModel",
   props: ["hideDialog"],
   methods: {
+    /* 
+    validate the input from user
+    */
+    validate() {
+      try {
+        let isValid = true;
+        this.errors = {
+          name: "",
+          code: "",
+        }
 
+        if (!this.title.name) {
+        this.errors.name = 'Tên danh hiệu thi đua không được để trống';
+        isValid = false;
+      }
+
+        if (!this.title.code) {
+        this.errors.code = 'Mã danh hiệu thi đua không được để trống';
+        isValid = false;
+      }
+      return isValid;
+      } catch (error) {
+        console.log('error');
+      }
+    },
+    /* 
+    save the information
+    of title if it meets validate function
+    */
+    onSaveInfo() {
+      try {
+        if(this.validate()) {
+          // call api to save info
+          console.log('call api');
+        }
+      } catch (error) {
+        console.log('error:');
+      }
+    },
   },
-  created() {
-    console.log('heh')
-  },
+  created() {},
   data() {
     return {
-        isShow: false
-    }
-  }
+      isShow: false,
+      title: {
+        name: "",
+        code: "",
+      },
+      errors: {
+        name: "",
+        code: ""
+      }
+    };
+  },
 };
 </script>
 
@@ -218,7 +281,7 @@ label {
 }
 
 .ip-solv {
-    display: flex;
+  display: flex;
 }
 .ip-solv input {
   flex: 1;
@@ -254,15 +317,14 @@ label {
   margin: 8px;
   padding: 8px;
   color: #3d3f4e;
-  
 }
 
 .ip--reward {
-    width: 84%;
+  width: 84%;
 }
 
 .ip--title {
-    width: 90%;
+  width: 90%;
 }
 
 .input--required {
@@ -270,15 +332,15 @@ label {
 }
 
 .checkbox-select {
-    display: flex;
+  display: flex;
 }
 
 .select-left {
-    width: 140px;
+  width: 140px;
 }
 
 .select-right {
-    width: 140px;
+  width: 140px;
 }
 .btn {
   /* line-height: 30px; */
@@ -320,16 +382,16 @@ label {
 }
 
 .text-area_container {
-    display: flex;
+  display: flex;
 }
 
 .text-area_item {
-    margin-left: 8px;
-    border-radius: 4px;
-    flex: 1;
-    padding: 8px;
-    margin-top: 8px;
-    border: 1px solid #cecece;
+  margin-left: 8px;
+  border-radius: 4px;
+  flex: 1;
+  padding: 8px;
+  margin-top: 8px;
+  border: 1px solid #cecece;
 }
 
 .text-area_item:focus {

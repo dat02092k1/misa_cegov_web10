@@ -5,6 +5,7 @@
           <MainContent :addFunction="onShowDialog"  />
         </div>
         <MainDialog :hideDialog="onHideDialog"  v-show="isShowDialog"/>
+        <LoadingContent v-show="isLoading" />
     </div>
     
 </template>
@@ -13,7 +14,7 @@
 import MainHeader from '../base/MainHeader.vue'
 import MainContent from '../base/MainContent.vue'
 import MainDialog from '../base/MainDialog.vue';
-
+import LoadingContent from '../base/LoadingContent.vue';
 export default {
   name: 'TheMain',
   props: {
@@ -22,7 +23,8 @@ export default {
   components: {
     MainHeader,
     MainContent,
-    MainDialog
+    MainDialog,
+    LoadingContent
   },
   methods: {
     /*
@@ -43,7 +45,8 @@ export default {
   },
   data() {
     return {
-      isShowDialog: false
+      isShowDialog: false,
+      isLoading: false
     }
   }
 }
