@@ -110,7 +110,8 @@
         </div>
       </div>
       <div class="dialog__footer">
-        <button class="btn btn__close">Đóng</button>
+        <button class="btn btn__close">Hủy</button>
+        <button class="btn btn__addSave">Lưu & thêm mới</button>
         <button class="btn btn__save">Lưu</button>
       </div>
     </div>
@@ -123,6 +124,9 @@ export default {
   props: ["hideDialog"],
   methods: {
 
+  },
+  created() {
+    console.log('heh')
   },
   data() {
     return {
@@ -219,6 +223,11 @@ label {
 .ip-solv input {
   flex: 1;
 }
+
+.ip-solv input:focus {
+  outline: none !important;
+  border: 1px solid #2979ff;
+}
 .row {
   display: flex;
   align-items: center;
@@ -233,6 +242,11 @@ label {
 .col label {
   margin: 8px;
   width: auto;
+}
+
+.col input:focus {
+  outline: none !important;
+  border: 1px solid #2979ff;
 }
 .ip {
   border-radius: 4px;
@@ -254,17 +268,7 @@ label {
 .input--required {
   color: red;
 }
-/* .dialog__avatar {
-      border-right: 2px solid #ccc;
-      position: absolute;
-      top: 20%;
-      height: 50%;
-  }
-  
-  .avt_img {
-      height: 150px;
-      border: 1px solid #ccc;
-  } */
+
 .checkbox-select {
     display: flex;
 }
@@ -294,9 +298,7 @@ label {
 }
 
 .dialog__footer {
-  display: flex;
-  justify-content: flex-end;
-  margin: 8px;
+  padding: 12px 24px;
 }
 
 .btn__close {
@@ -306,9 +308,15 @@ label {
 }
 
 .btn__save {
-  background-color: #03ae66;
+  background-color: #2979ff;
   color: #ffffff;
   border: none;
+}
+
+.btn__addSave {
+  background-color: #ffffff;
+  color: #2979ff;
+  border: 1px solid #2979ff;
 }
 
 .text-area_container {
@@ -321,5 +329,11 @@ label {
     flex: 1;
     padding: 8px;
     margin-top: 8px;
+    border: 1px solid #cecece;
+}
+
+.text-area_item:focus {
+  outline: none !important;
+  border: 1px solid #2979ff;
 }
 </style>

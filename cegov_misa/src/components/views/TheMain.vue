@@ -31,7 +31,7 @@ export default {
     that will show a form to register title
     */
     onShowDialog() { 
-      this.isShowDialog = true; 
+      this.isShowDialog = true;
     },
     /*
     click "x" button

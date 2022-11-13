@@ -2,7 +2,7 @@
   <div class="main-header">
     <div class="main-header__title">
       <span class="title">Danh hiệu thi đua</span>
-    </div>
+    </div>         
     <div class="main-header__func">
       <div class="func__left">
         <div class="searchbox">
@@ -40,7 +40,7 @@ export default {
   */  
   methods: {
     showDialog() {
-      this.$emit("onAddClick")
+      this.$emit("onAddClick");             
     }
   }
 };
