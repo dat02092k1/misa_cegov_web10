@@ -1,8 +1,9 @@
 <template>
     <div class="main-content">
-      <div class="main-content-table">
+      <div class="main-content-table" style="overflow-y:auto; overflow-x: auto; height: 400px;">
       <table id="main__table">
-              <tr id="tr__title">
+              <thead>
+                <tr id="tr__title">
                 <th><input type="checkbox" name="" id=""></th>
                 <th>Tên danh hiệu thi đua</th>
                 <th>Mã danh hiệu</th>
@@ -11,7 +12,24 @@
                 <th>Loại phong trào</th>
                 <th>Trạng thái</th>  
               </tr>
-              <tr @dblclick="onRowDbClick">
+              </thead>
+              <tbody>
+                <tr @dblclick="onRowDbClick" v-for="(item, index) in titles" :key="index">
+                <td><input type="checkbox" name="" id=""></td>
+                <td>{{item.EmployeeCode}}</td>
+                <td>{{item.EmployeeCode}}</td>
+                <td class="table--text-blue">{{item.EmployeeName}}</td>
+                <td>{{item.GenderName}}</td>
+                <td>{{item.DateOfBirth}}</td>  
+                <td class="table_fuction">
+                  <div>Sử dụng</div>
+                  <div class="ic_Edit"><img src="../../assets/Icons/ic_edit_2.png" alt=""></div>
+                  <div class="ic_Remove"><img src="../../assets/Icons/ic_Remove.png" alt=""></div>
+                </td>
+              </tr>
+              </tbody>
+              <!-- <tbody>
+                <tr @dblclick="onRowDbClick">
                 <td><input type="checkbox" name="" id=""></td>
                 <td>Lao động tiên tiến</td>
                 <td>LĐTTCX</td>
@@ -52,64 +70,7 @@
                   <div class="ic_Edit"><img src="../../assets/Icons/ic_edit_2.png" alt=""></div>
                   <div class="ic_Remove"><img src="../../assets/Icons/ic_Remove.png" alt=""></div>
                 </td>
-              </tr>
-              
-              <tr>
-                <td><input type="checkbox" name="" id=""></td>
-                <td>Lao động tiên tiến</td>
-                <td>LĐTTCX</td>
-                <td class="table--text-blue">Cá nhân</td>
-                <td>Cấp xã/tương đương</td>
-                <td>Thường xuyên</td>
-                
-                <td class="table_fuction">
-                  <div>Sử dụng</div>
-                  <div class="ic_Edit"><img src="../../assets/Icons/ic_edit_2.png" alt=""></div>
-                  <div class="ic_Remove"><img src="../../assets/Icons/ic_Remove.png" alt=""></div>
-                </td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" name="" id=""></td>
-                <td>Lao động tiên tiến</td>
-                <td>LĐTTCX</td>
-                <td class="table--text-blue">Cá nhân</td>
-                <td>Cấp xã/tương đương</td>
-                <td>Thường xuyên</td>
-                
-                <td class="table_fuction">
-                  <div>Sử dụng</div>
-                  <div class="ic_Edit"><img src="../../assets/Icons/ic_edit_2.png" alt=""></div>
-                  <div class="ic_Remove"><img src="../../assets/Icons/ic_Remove.png" alt=""></div>
-                </td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" name="" id=""></td>
-                <td>Lao động tiên tiến</td>
-                <td>LĐTTCX</td>
-                <td class="table--text-blue">Cá nhân</td>
-                <td>Cấp xã/tương đương</td>
-                <td>Thường xuyên</td>
-                
-                <td class="table_fuction">
-                  <div>Sử dụng</div>
-                  <div class="ic_Edit"><img src="../../assets/Icons/ic_edit_2.png" alt=""></div>
-                  <div class="ic_Remove"><img src="../../assets/Icons/ic_Remove.png" alt=""></div>
-                </td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" name="" id=""></td>
-                <td>Lao động tiên tiến</td>
-                <td>LĐTTCX</td>
-                <td class="table--text-blue">Cá nhân</td>
-                <td>Cấp xã/tương đương</td>
-                <td>Thường xuyên</td>
-                
-                <td class="table_fuction">
-                  <div>Sử dụng</div>
-                  <div class="ic_Edit"><img src="../../assets/Icons/ic_edit_2.png" alt=""></div>
-                  <div class="ic_Remove"><img src="../../assets/Icons/ic_Remove.png" alt=""></div>
-                </td>
-              </tr>
+              </tr>           
               <tr>
                 <td><input type="checkbox" name="" id=""></td>
                 <td>Lao động tiên tiến</td>
@@ -166,6 +127,63 @@
                   <div class="ic_Remove"><img src="../../assets/Icons/ic_Remove.png" alt=""></div>
                 </td>
               </tr>
+              <tr>
+                <td><input type="checkbox" name="" id=""></td>
+                <td>Lao động tiên tiến</td>
+                <td>LĐTTCX</td>
+                <td class="table--text-blue">Cá nhân</td>
+                <td>Cấp xã/tương đương</td>
+                <td>Thường xuyên</td>
+                
+                <td class="table_fuction">
+                  <div>Sử dụng</div>
+                  <div class="ic_Edit"><img src="../../assets/Icons/ic_edit_2.png" alt=""></div>
+                  <div class="ic_Remove"><img src="../../assets/Icons/ic_Remove.png" alt=""></div>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name="" id=""></td>
+                <td>Lao động tiên tiến</td>
+                <td>LĐTTCX</td>
+                <td class="table--text-blue">Cá nhân</td>
+                <td>Cấp xã/tương đương</td>
+                <td>Thường xuyên</td>
+                
+                <td class="table_fuction">
+                  <div>Sử dụng</div>
+                  <div class="ic_Edit"><img src="../../assets/Icons/ic_edit_2.png" alt=""></div>
+                  <div class="ic_Remove"><img src="../../assets/Icons/ic_Remove.png" alt=""></div>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name="" id=""></td>
+                <td>Lao động tiên tiến</td>
+                <td>LĐTTCX</td>
+                <td class="table--text-blue">Cá nhân</td>
+                <td>Cấp xã/tương đương</td>
+                <td>Thường xuyên</td>
+                
+                <td class="table_fuction">
+                  <div>Sử dụng</div>
+                  <div class="ic_Edit"><img src="../../assets/Icons/ic_edit_2.png" alt=""></div>
+                  <div class="ic_Remove"><img src="../../assets/Icons/ic_Remove.png" alt=""></div>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" name="" id=""></td>
+                <td>Lao động tiên tiến</td>
+                <td>LĐTTCX</td>
+                <td class="table--text-blue">Cá nhân</td>
+                <td>Cấp xã/tương đương</td>
+                <td>Thường xuyên</td>
+                
+                <td class="table_fuction">
+                  <div>Sử dụng</div>
+                  <div class="ic_Edit"><img src="../../assets/Icons/ic_edit_2.png" alt=""></div>
+                  <div class="ic_Remove"><img src="../../assets/Icons/ic_Remove.png" alt=""></div>
+                </td>
+              </tr>
+              </tbody> -->
             </table>
       </div>
       <div class="container-footer">
@@ -189,13 +207,36 @@
           </div>
         </div>
       </div>
+      <LoadingContent :showLoadingFunction="showLoading" v-show="isLoading" />
     </div>
+
+    
   </template>
   
   <script>
+  import LoadingContent from '../base/LoadingContent.vue';
+
   export default {
     name: "MainContent",
-    props: ["addFunction"],
+    components: {LoadingContent},
+    props: ["addFunction","showLoading"],
+    created() {
+      // fetch data
+      // show loading
+      this.isLoading = true;
+      fetch("https://amis.manhnv.net/api/v1/Employees")
+        .then((res) => res.json())  
+        .then((res) => {
+          this.titles = res;
+          this.isLoading = false;
+        }); 
+    },
+    data() {
+      return {
+        isLoading: false,
+        titles: []
+      }
+    },
     methods: {
       /*
       show information of specified row 
@@ -336,6 +377,29 @@
     box-sizing: border-box;
   }
   
-  
+  .loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #4545459b;
+  }
+
+  .loading__content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;  
+    justify-content: center;
+  }
+
+  .loading__icon {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border-top: 8px solid rgb(0, 142, 31);  
+  }
   </style>
   

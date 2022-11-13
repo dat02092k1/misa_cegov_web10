@@ -5,7 +5,7 @@
           <MainContent :addFunction="onShowDialog"  />
         </div>
         <MainDialog :hideDialog="onHideDialog"  v-show="isShowDialog"/>
-        <LoadingContent v-show="isLoading" />
+        <LoadingContent :showLoadingFunction="showLoading" v-show="isLoading" />
     </div>
     
 </template>
@@ -27,6 +27,9 @@ export default {
     LoadingContent
   },
   methods: {
+    showLoading() {
+      this.isLoading = true;  
+    },
     /*
     click "Thêm danh hiệu"
     Display MainDialog components 
