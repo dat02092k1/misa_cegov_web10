@@ -3,7 +3,7 @@
         <div class="main__wrap">
           <MainHeader :addFunction="onShowDialog" @onAddClick="onShowDialog" />  
           <MainContent :addFunction="onShowDialog"  />
-        </div>
+        </div>  
         <MainDialog :hideDialog="onHideDialog"  v-show="isShowDialog"/>
         <LoadingContent :showLoadingFunction="showLoading" v-show="isLoading" />
     </div>

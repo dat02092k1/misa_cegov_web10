@@ -79,39 +79,7 @@
           <div class="">Báo cáo</div>
         </div>
       </a>
-      <a href="">
-        <div class="menu-item">
-          <div class="icon-overview">
-            <img
-              src="../../assets/icons_cegov/ic_category.f257fcc6.svg"
-              alt=""
-            />
-          </div>
-          <div class="">Danh mục</div>
-        </div>
-      </a>
-      <a href="">
-        <div class="menu-item">
-          <div class="icon-overview">
-            <img
-              src="../../assets/icons_cegov/ic_setting_default.be222d4a.svg"
-              alt=""
-            />
-          </div>
-          <div class="">Thiết lập</div>
-        </div>
-      </a>
-      <a href="">
-        <div class="menu-item">
-          <div class="icon-overview">
-            <img
-              src="../../assets/icons_cegov/ic_guide_default.186420dc.svg"
-              alt=""
-            />
-          </div>
-          <div class="">Hướng dẫn</div>
-        </div>
-      </a>
+      
     </div>
   </div>
 </template>
@@ -133,7 +101,6 @@ export default {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  overflow: scroll;
 }
 
 .logo-container {
@@ -162,7 +129,7 @@ a {
 }
 
 .menu-item {
-  font-size: 18px;
+  font-weight: 500;
   display: flex;
   align-items: center;
   justify-content: start;

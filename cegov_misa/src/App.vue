@@ -26,6 +26,7 @@ export default {
 </script>
 
 <style scoped>
+@import url(../src/css/index.css);
 .container {
   display: flex;
   flex-wrap: wrap;

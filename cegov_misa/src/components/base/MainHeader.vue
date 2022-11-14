@@ -11,11 +11,10 @@
             class="input__search"
             placeholder="Nhập mã hoặc tên danh hiệu"
           />
-          <div class="btn__search search">
-            <!-- <img src="../../assets/Icons/Ic_seerch.png" alt="" /> -->
+          <div class="btn__search search">    
           </div>
         </div>
-        <div class="filter">
+        <div class="input__filter">
           <button class="btn btn__filter">
             <div class="icon__filter filter"></div>
             <span>Bộ lọc</span>
@@ -23,7 +22,11 @@
         </div>
       </div>
       <div class="func-right">
-        <button @click="showDialog" class="btn btn__add-new">+ Thêm danh hiệu</button>
+        
+        <button v-if="isShowBtnAdd" @click="showDialog" class="btn btn__add-new">
+          <div class="icon__plus plus"></div>
+          <div class="showDialog__title">Thêm danh hiệu</div>    
+        </button>
       </div>
     </div>
   </div>
@@ -42,7 +45,12 @@ export default {
     showDialog() {
       this.$emit("onAddClick");             
     }
-  }
+  },
+  data() {
+    return {
+      isShowBtnAdd: true
+    }
+  },
 };
 </script>
 
@@ -68,7 +76,7 @@ export default {
 .icon__filter {
   position: absolute;
   top: 5px;
-  left: 0;
+  left: 15px;
   height: 24px;
   width: 24px;
   content: "";
@@ -76,10 +84,13 @@ export default {
     no-repeat;
 }
 
-.filter {
+ .filter {
   background-position: -96px -48px;
 }
 
+ .filter:hover {
+  cursor: pointer;
+}
 .btn__search {
   height: 24px;
   width: 24px;
@@ -110,6 +121,7 @@ export default {
   display: flex;
   align-items: center;
   position: relative;
+  color: black;
 }
 .input__search {
   border-radius: 3.5px;
@@ -117,12 +129,27 @@ export default {
   height: 30px;
   overflow: hidden;
   padding-left: 10px;
-  padding-right: 130px;
+  padding-right: 20px;
+  min-width: 220px;
 }
 
 .input__search:focus {
   outline: none !important;
   border: 1px solid #2979ff;
+}
+
+.icon__plus {
+  background: transparent url(../../assets/icons_cegov/sprites.06b14dc5.svg) no-repeat;
+  content: "";
+  height: 24px;
+  width: 24px;
+  position: absolute;
+  top: 5px;
+  left: 15px;
+}
+.plus {
+background-position: -192px -96px;
+
 }
 
 .btn {
@@ -141,6 +168,16 @@ export default {
   background-color: #2979ff;
   color: #ffffff;
   border: none;
+  position: relative;
+  width: 158px;
+  min-height: 36px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn__add-new:hover {
+  background-color: #1a73e8;  
+  cursor: pointer;
 }
 
 .btn__filter {
@@ -148,6 +185,8 @@ export default {
   color: #3d3f4e;
   border: 1px solid #cecece;
   position: relative;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .btn__toggle {

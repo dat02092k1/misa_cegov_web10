@@ -80,7 +80,7 @@ export default {
 }
 
 .header-right__launcher {
-  padding: 0 16px;
+  margin: 5px;
   height: 100%;
 }
 
@@ -88,6 +88,7 @@ export default {
   background-color: #cdcdcd;
   border-radius: 50%;
   padding: 5px 5px;
+  cursor: pointer;
 }
 .launcher__icon__left {
   height: 24px;
@@ -101,6 +102,9 @@ export default {
   background: transparent url(../../assets/icons_cegov/sprites.06b14dc5.svg) no-repeat;
 }
 
+.launcher__icon_right:hover {
+  cursor: pointer;
+}
 .setting {
   background-position: -264px -168px;
 }

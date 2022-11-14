@@ -1,10 +1,19 @@
 @font-face {
-    font-family: Open Sans regular;
-    src: url(../assets/Fonts/OpenSans-Regular.ttf);
+    font-family: Google Sans regular;
+    src: url(../assets/Fonts/GoogleSans-Regular.77b210bc.woff2);
 }
 
-* {
-    font-family: Open Sans regular;
-    font-size: 13px;
+@font-face {
+    font-family: Google Sans Medium;
+    src: url(../assets/Fonts/GoogleSans-Medium.ebe648aa.woff2);
+}
+@font-face {
+    font-family: Google Sans Bold;
+    src: url(../assets/Fonts/GoogleSans-Bold.5aa86344.woff2);
+}
+body {
+    font-family: Google Sans regular;
+    font-size: 14px;
     margin: 0;
+    color: #000;
 }

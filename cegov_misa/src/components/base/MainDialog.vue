@@ -24,15 +24,156 @@
                   maxlength="255"
                   placeholder="Nhập tên danh hiệu thi đua"
                   v-model="title.name"
-                  v-bind:class="{'is-invalid': errors.name}"
                   @blur="validate()"
                 />
                 <div class="feedback-invalid" v-if="errors.name">
-                  {{errors.name}}
+                  {{ errors.name }}
                 </div>
               </div>
             </div>
-            <div class="row">
+
+            <div class="form-group">
+              <div class="flex mr2">
+                <label class="form-group-label d-flex">
+                  Mã danh hiệu
+                  <span class="required">*</span></label
+                >
+                <div class="flex">
+                  <div class="ms-input ms-editor w-100">
+                    <div class="flex-row border">
+                      <input
+                        placeholder="Nhập mã danh hiệu"
+                        maxlength="25"
+                        type="text"
+                        class="ms-input-item flex"
+                      />
+                      <!-- <div
+                        class="icon24 error error-icon"
+                        style="display: none"
+                      ></div> -->
+                      <!----><!----><!---->
+                    </div>
+                    <!---->
+                  </div>
+                </div>
+              </div>
+              <div class="flex mr2">
+                <label class="form-group-label d-flex">
+                  Đối tượng khen thưởng
+                  <span class="required">*</span></label
+                >
+                <div class="flex-row flex-center">
+                  <div class="flex">
+                    <label
+                      class="text-black ms-checkbox ms-editor"
+                      rules="required"
+                      ><input
+                        type="checkbox"
+                        class="ms-checkbox-control"
+                        value="false"
+                        v-model="title.valueIp1"
+                        @blur="validate()"
+                        @change="handleTermsState"
+                      /><span class="checkmark"></span
+                      ><span class="ms-checkbox--text text-black"
+                        >Cá nhân</span
+                      ></label
+                    >
+                  </div>
+                  <div class="flex">
+                    <label
+                      class="text-black ms-checkbox ms-editor"
+                      rules="required"
+                      ><input
+                        type="checkbox"
+                        class="ms-checkbox-control"
+                        value="false"
+                        v-model="title.valueIp2"
+                        @blur="validate()"
+                        @change="handleTermsState"
+                      /><span class="checkmark"></span
+                      ><span class="ms-checkbox--text text-black"
+                        >Tập thể</span
+                      ></label
+                    >
+                  </div>
+                </div>
+                <p
+                  style="color: red"
+                  class="for-error terms-error"
+                  v-if="multipeValueIp"
+                >
+                  You have to agree the terms and privacy condition.
+                </p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="flex mr-2">
+                <label class="form-group-label d-flex">
+                  Cấp khen thưởng
+                  <span class="required">*</span></label
+                >
+                <div class="flex">
+                  <div class="ms-input ms-editor w-100">
+                    <div class="flex-row border">
+                      
+                      <!-- <input
+                        placeholder="Chọn hiện vật khen thưởng"
+                        class="ms-input-item flex"
+                        title="Cấp Huyện/tương đương"
+                        v-model= "selected"
+                      />   -->
+                      <select class="ms-input-item flex">
+    <option value="0">Select car:</option>
+    <option value="1">Audi</option>
+    <option value="2">BMW</option>
+    <option value="3">Citroen</option>
+    <option value="4">Ford</option>
+    <option value="5">Honda</option>
+  </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex mr-2">
+                <label class="form-group-label d-flex">
+                  Loại phong trào áp dụng
+                  <span class="required">*</span></label
+                >
+                <div class="flex-row flex-center">
+                  <div class="flex">
+                    <label
+                      class="text-black ms-checkbox ms-editor"
+                      rules="required"
+                      ><input
+                        type="checkbox"
+                        class="ms-checkbox-control"
+                        value="true"
+                      /><span class="checkmark"></span
+                      ><span class="ms-checkbox--text text-black"
+                        >Thường xuyên</span
+                      ></label
+                    >
+                  </div>
+                  <div class="flex">
+                    <label
+                      class="text-black ms-checkbox ms-editor"
+                      rules="required"
+                      ><input
+                        type="checkbox"
+                        class="ms-checkbox-control"
+                        value="true"
+                      /><span class="checkmark"></span
+                      ><span class="ms-checkbox--text text-black"
+                        >Theo đợt</span
+                      ></label
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="row">
               <div class="col">
                 <label for=""
                   >Mã danh hiệu <span class="input--required">*</span></label
@@ -76,8 +217,8 @@
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="row">
+            </div> -->
+            <!-- <div class="row">
               <div class="col">
                 <label for=""
                   >Cấp khen thưởng <span class="input--required">*</span></label
@@ -110,7 +251,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
             <div class="row1">
               <label for=""> Ghi chú </label>
               <div class="text-area_container">
@@ -121,7 +262,7 @@
                   id=""
                   cols="30"
                   placeholder="Ghi chú"
-                  rows="10"
+                  rows="6"
                 ></textarea>
               </div>
             </div>
@@ -129,9 +270,9 @@
         </div>
       </div>
       <div class="dialog__footer">
-        <button class="btn btn__close">Hủy</button>
+        <button @click="this.hideDialog()" class="btn btn__close">Hủy</button>
         <button class="btn btn__addSave">Lưu & thêm mới</button>
-        <button @click="onSaveInfo()" class="btn btn__save">Lưu</button>
+        <button @click="onSaveInfo" class="btn btn__save">Lưu</button>
       </div>
     </div>
   </div>
@@ -141,30 +282,65 @@
 export default {
   name: "DialogModel",
   props: ["hideDialog"],
+  computed: {
+    multipeValueIp() {
+      this.errors.valueIp1;
+      this.errors.valueIp2;
+      return this.errors.valueIp1 && this.errors.valueIp2;
+    },
+  },
   methods: {
+    handleTermsState() {
+      this.validated = false;
+    },
     /* 
     validate the input from user
     */
     validate() {
       try {
+        console.log(this.title);
         let isValid = true;
         this.errors = {
           name: "",
           code: "",
-        }
+          valueIp1: false,
+          valueIp2: false,
+          valueIp3: false,
+          valueIp4: false,
+        };
 
         if (!this.title.name) {
-        this.errors.name = 'Tên danh hiệu thi đua không được để trống';
-        isValid = false;
-      }
+          this.errors.name = "Tên danh hiệu thi đua không được để trống";
+          isValid = false;
+        }
 
         if (!this.title.code) {
-        this.errors.code = 'Mã danh hiệu thi đua không được để trống';
-        isValid = false;
-      }
-      return isValid;
+          this.errors.code = "Mã danh hiệu thi đua không được để trống";
+          isValid = false;
+        }
+
+        if (!this.title.valueIp1) {
+          this.errors.valueIp1 = "valueIp không được để trống";
+          isValid = false;
+        }
+
+        if (!this.title.valueIp2) {
+          this.errors.valueIp2 = "valueIp không được để trống";
+          isValid = false;
+        }
+
+        if (!this.title.valueIp3) {
+          this.errors.valueIp3 = "valueIp không được để trống";
+          isValid = false;
+        }
+
+        if (!this.title.valueIp4) {
+          this.errors.valueIp4 = "valueIp không được để trống";
+          isValid = false;
+        }
+        return isValid;
       } catch (error) {
-        console.log('error');
+        console.log("error");
       }
     },
     /* 
@@ -173,12 +349,12 @@ export default {
     */
     onSaveInfo() {
       try {
-        if(this.validate()) {
+        if (this.validate()) {
           // call api to save info
-          console.log('call api');
+          console.log("call api");
         }
       } catch (error) {
-        console.log('error:');
+        console.log("error:");
       }
     },
   },
@@ -186,14 +362,24 @@ export default {
   data() {
     return {
       isShow: false,
+      termsState: false,
+      validated: false,
       title: {
         name: "",
         code: "",
+        valueIp1: false,
+        valueIp2: false,
+        valueIp3: false,
+        valueIp4: false,
       },
       errors: {
         name: "",
-        code: ""
-      }
+        code: "",
+        valueIp1: false,
+        valueIp2: false,
+        valueIp3: false,
+        valueIp4: false,
+      },
     };
   },
 };
@@ -204,23 +390,26 @@ label {
   display: inline-block;
   width: 110px;
 }
+
 .dialog {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-
   background-color: rgba(0, 0, 0, 0.626);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.feedback-invalid {
+  color: red;
+}
 .dialog-wrapper {
   position: absolute;
-  width: 700px;
-  height: 590px;
+  width: 600px;
+  height: 550px;
   background-color: #fff;
   border-radius: 4px;
 }
@@ -246,7 +435,11 @@ label {
 
 .icon-dialog-help {
   background-position: -50px -50px;
-  margin: 10px;
+  margin: 8px;
+}
+
+.icon-dialog-help:hover {
+  cursor: pointer;
 }
 
 .icon-dialog__close {
@@ -255,14 +448,78 @@ label {
     right: 5px;
     border: unset; */
   background-position: -242px -26px;
-  margin: 10px;
+  margin: 8px;
 }
 
-/* .dialog__body {
-} */
+.form-group {
+  display: flex;
+  margin-bottom: 16px;
+}
+.flex {
+  flex: 1;
+  margin-right: 10px;
+}
 
-.dialog__info {
-  margin: 10px;
+.form-group-label {
+  display: flex;
+  font-weight: 400;
+  height: 20px;
+  margin-bottom: 8px;
+  padding: 0;
+  width: auto;
+}
+
+.form-group-label .required {
+  color: #e54848;
+}
+
+.ms-input {
+  background: #fff;
+  padding: 0;
+  width: 100%;
+}
+
+.ms-editor {
+  width: 100%;
+}
+
+.ms-editor .border {
+  border: 1px solid #e0e0e0;
+  border-radius: 3.5px;
+}
+
+.flex-row {
+  display: flex;
+
+  align-items: center;
+}
+
+.ms-editor .border input:focus {
+  outline: none !important;
+  border: 1px solid #2979ff;
+  padding-right: 10px;
+}
+.flex-center {
+  padding: 10px;
+}
+
+.ms-editor .border input {
+  border-radius: 3.5px;
+}
+
+.ms-input-item {
+  border: none;
+
+  background: transparent;
+  min-height: 34px;
+}
+.icon-dialog__close:hover {
+  color: red;
+  cursor: pointer;
+}
+
+.dialog__body {
+  padding: 24px 24px 0;
 }
 
 .dialog__title {
@@ -272,16 +529,18 @@ label {
 }
 
 .row1 {
+  margin-bottom: 16px;
   width: 100%;
 }
 
 .row1 label {
   width: auto;
-  margin-left: 8px;
+  margin-bottom: 8px;
 }
 
 .ip-solv {
   display: flex;
+  flex-direction: column;
 }
 .ip-solv input {
   flex: 1;
@@ -303,7 +562,6 @@ label {
 }
 
 .col label {
-  margin: 8px;
   width: auto;
 }
 
@@ -314,7 +572,6 @@ label {
 .ip {
   border-radius: 4px;
   border: 1px solid #cecece;
-  margin: 8px;
   padding: 8px;
   color: #3d3f4e;
 }
@@ -360,6 +617,8 @@ label {
 }
 
 .dialog__footer {
+  display: flex;
+  justify-content: flex-end;
   padding: 12px 24px;
 }
 
@@ -381,12 +640,15 @@ label {
   border: 1px solid #2979ff;
 }
 
+.btn__addSave:hover {
+  cursor: pointer;
+}
+
 .text-area_container {
   display: flex;
 }
 
 .text-area_item {
-  margin-left: 8px;
   border-radius: 4px;
   flex: 1;
   padding: 8px;
