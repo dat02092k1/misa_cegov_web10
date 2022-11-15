@@ -1,10 +1,10 @@
 <template>
     <div class="main">
         <div class="main__wrap">
-          <MainHeader :addFunction="onShowDialog" @onAddClick="onShowDialog" />  
-          <MainContent :addFunction="onShowDialog"  />
+          <MainHeader :testProp="testProp" :addFunction="onShowDialog" @onAddClick="onShowDialog" />  
+          <MainContent :funcShowDialog="showDialogDetails"  />
         </div>  
-        <MainDialog :hideDialog="onHideDialog"  v-show="isShowDialog"/>
+        <MainDialog :titleSelected="titleSelected" :hideDialog="onHideDialog"  v-if="isShowDialog"/>
         <LoadingContent :showLoadingFunction="showLoading" v-show="isLoading" />
     </div>
     
@@ -38,6 +38,10 @@ export default {
     onShowDialog() { 
       this.isShowDialog = true;
     },
+    showDialogDetails(title) {
+      this.isShowDialog = true;
+      this.titleSelected = title;
+    },
     /*
     click "x" button
     hide MainDialog components
@@ -49,7 +53,9 @@ export default {
   data() {
     return {
       isShowDialog: false,
-      isLoading: false
+      isLoading: false,
+      titleSelected: {},
+      testProp: 'heh'
     }
   }
 }

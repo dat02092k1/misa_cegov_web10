@@ -20,7 +20,7 @@
                   id="rewardName"
                   autofocus
                   class="ip ip--rewardName"
-                  type="text"
+                  type="text"  
                   maxlength="255"
                   placeholder="Nhập tên danh hiệu thi đua"
                   v-model="title.name"
@@ -46,6 +46,7 @@
                         maxlength="25"
                         type="text"
                         class="ms-input-item flex"
+                        v-model="titleProp.titleCode"
                       />
                       <!-- <div
                         class="icon24 error error-icon"
@@ -262,7 +263,7 @@
                   id=""
                   cols="30"
                   placeholder="Ghi chú"
-                  rows="6"
+                  rows="4"
                 ></textarea>
               </div>
             </div>
@@ -281,7 +282,7 @@
 <script>
 export default {
   name: "DialogModel",
-  props: ["hideDialog"],
+  props: ["hideDialog", "titleSelected"],
   computed: {
     multipeValueIp() {
       this.errors.valueIp1;
@@ -298,7 +299,7 @@ export default {
     */
     validate() {
       try {
-        console.log(this.title);
+        
         let isValid = true;
         this.errors = {
           name: "",
@@ -313,7 +314,7 @@ export default {
           this.errors.name = "Tên danh hiệu thi đua không được để trống";
           isValid = false;
         }
-
+        console.log(isValid);
         if (!this.title.code) {
           this.errors.code = "Mã danh hiệu thi đua không được để trống";
           isValid = false;
@@ -328,17 +329,20 @@ export default {
           this.errors.valueIp2 = "valueIp không được để trống";
           isValid = false;
         }
+        
 
-        if (!this.title.valueIp3) {
-          this.errors.valueIp3 = "valueIp không được để trống";
-          isValid = false;
-        }
+        // if (!this.title.valueIp3) {
+        //   this.errors.valueIp3 = "valueIp không được để trống";
+        //   isValid = false;
+        // }
 
-        if (!this.title.valueIp4) {
-          this.errors.valueIp4 = "valueIp không được để trống";
-          isValid = false;
-        }
+        // if (!this.title.valueIp4) {
+        //   this.errors.valueIp4 = "valueIp không được để trống";
+        //   isValid = false;
+        // }
+        console.log(isValid);
         return isValid;
+        
       } catch (error) {
         console.log("error");
       }
@@ -349,7 +353,8 @@ export default {
     */
     onSaveInfo() {
       try {
-        if (this.validate()) {
+        if (this.validate() == true) {
+          console.log('vks');
           // call api to save info
           console.log("call api");
         }
@@ -358,12 +363,16 @@ export default {
       }
     },
   },
-  created() {},
+  created() {
+    this.titleProp = this.titleSelected;
+    this.title.name = this.titleProp.titleLabel;
+  },
   data() {
     return {
       isShow: false,
       termsState: false,
       validated: false,
+      titleProp:{}, 
       title: {
         name: "",
         code: "",
@@ -451,13 +460,17 @@ label {
   margin: 8px;
 }
 
+.icon-dialog__close:hover {
+  cursor: pointer;
+  background-position: -266px -26px;
+}
+
 .form-group {
   display: flex;
   margin-bottom: 16px;
 }
 .flex {
   flex: 1;
-  margin-right: 10px;
 }
 
 .form-group-label {
@@ -486,7 +499,12 @@ label {
 .ms-editor .border {
   border: 1px solid #e0e0e0;
   border-radius: 3.5px;
+  margin-right: 10px;
 }
+
+/* .ms-editor .border {
+  border-color: #1a73e8;
+} */
 
 .flex-row {
   display: flex;
@@ -507,16 +525,19 @@ label {
   border-radius: 3.5px;
 }
 
-.ms-input-item {
-  border: none;
+.border:hover{
+  outline: none !important;
+  border: 1px solid #2979ff;
+}
 
-  background: transparent;
+.ms-input-item {
+  box-sizing: border-box;
+  padding: 8px;
+  border: none;
+  background: 0 0;
   min-height: 34px;
 }
-.icon-dialog__close:hover {
-  color: red;
-  cursor: pointer;
-}
+
 
 .dialog__body {
   padding: 24px 24px 0;
@@ -654,6 +675,7 @@ label {
   padding: 8px;
   margin-top: 8px;
   border: 1px solid #cecece;
+  resize: none;
 }
 
 .text-area_item:focus {

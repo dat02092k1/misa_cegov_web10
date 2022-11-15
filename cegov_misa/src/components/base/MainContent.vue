@@ -44,11 +44,11 @@
                 <div class="row-flex__title">Trạng thái</div>
               </div>
             </th>
-            
+              
           </tr>
         </thead>
         <tbody>
-          <tr @dblclick="onRowDbClick" class="table__row" v-for="(item, index) in data"
+          <tr @dblclick="onRowDbClick(item)" class="table__row" v-for="(item, index) in data"
             :key="index"> 
             <td>
               <input v-bind:id="index" @click="selectorCheckbox(index)" class="checkbox" type="checkbox" v-model="item.checked" name="" />
@@ -60,19 +60,19 @@
               {{item.titleCode}}
             </td>
             <td>
-                {{ item.rewardCandidate
+                {{ item.rewardCandidate[0]
                 }}
             </td>
             <td>
-                {{ item.rewardCandidate
+                {{ item.rewardCandidate[1]
                 }}
             </td>
             <td>
-                {{ item.rewardCandidate
+                {{ item.rewardCandidate[0]
                 }}
             </td>
             <td>
-                {{ item.rewardCandidate
+                {{ item.rewardCandidate[1]
                 }}
             </td>
           </tr>
@@ -105,7 +105,7 @@ import LoadingContent from "../base/LoadingContent.vue";
 export default {
   name: "MainContent",
   components: { LoadingContent },
-  props: ["addFunction", "showLoading"],
+  props: ["funcShowDialog", "showLoading"],
   computed: {
     selectAll: function() {
       return this.data.every(function(item){
@@ -136,66 +136,67 @@ export default {
         {
         "titleLabel": "Lao động tiên tiến",
         "titleCode": "LĐTTCh",
-        "rewardCandidate": "Cá nhân",
+         "rewardCandidate": ["Cá nhân", "Tập thể"],
         "rewardLevel": "Cấp tỉnh/tương đương",
         'checked': false},
         {
         "titleLabel": "Tập thể lao động tiên tiến",
         "titleCode": "TTLĐTT",
-        "rewardCandidate": "Tập thể",
+        "rewardCandidate": ["Cá nhân", "Tập thể"],
         "rewardLevel": "Cấp nhà nước",
         'checked': false},
         {
         "titleLabel": "Lao động tiên tiến",
         "titleCode": "LĐTTCh",
-        "rewardCandidate": "Cá nhân",
+         "rewardCandidate": ["Cá nhân", "Tập thể"],
         "rewardLevel": "Cấp tỉnh/tương đương",
         'checked': false},
         {
         "titleLabel": "Cờ thi đua của chính phủ",
         "titleCode": "CTĐCCP",
-        "rewardCandidate": "Tập thể",
+        "rewardCandidate": ["Cá nhân", "Tập thể"],
         "rewardLevel": "Cấp nhà nước",
         'checked': false},
         {
         "titleLabel": "Lao động tiên tiến",
         "titleCode": "LĐTTCh",
-        "rewardCandidate": "Cá nhân",
+         "rewardCandidate": ["Cá nhân", "Tập thể"],
         "rewardLevel": "Cấp nhà nước",
         'checked': false},
         {
         "titleLabel": "Lao động tiên tiến",
         "titleCode": "LĐTTCh",
-        "rewardCandidate": "Cá nhân",
+         "rewardCandidate": ["Cá nhân", "Tập thể"],
         "rewardLevel": "Cấp nhà nước",
         'checked': false},
         {
         "titleLabel": "Lao động tiên tiến",
         "titleCode": "LĐTTCh",
-        "rewardCandidate": "Cá nhân",
+         "rewardCandidate": ["Cá nhân", "Tập thể"],
         "rewardLevel": "Cấp nhà nước",
         'checked': false},
         {
         "titleLabel": "Lao động tiên tiến",
         "titleCode": "LĐTTCh",
-        "rewardCandidate": "Cá nhân",
+        "rewardCandidate": ["Cá nhân", "Tập thể"],
         "rewardLevel": "Cấp nhà nước",
         'checked': false},
         {
         "titleLabel": "Lao động tiên tiến",
         "titleCode": "LĐTTCh",
-        "rewardCandidate": "Cá nhân",
+         "rewardCandidate": ["Cá nhân", "Tập thể"],
         "rewardLevel": "Cấp nhà nước",
         'checked': false},
         {
         "titleLabel": "Lao động tiên tiến",
         "titleCode": "LĐTTCh",
-        "rewardCandidate": "Cá nhân",
+        "rewardCandidate": ["Cá nhân", "Tập thể"],
         "rewardLevel": "Cấp nhà nước",
         'checked': false}
       ],
       checkboxId: [],
-      selected: false
+      selected: false,
+      check: 0
     };
   },
   methods: {
@@ -213,6 +214,7 @@ export default {
     auto check body checkbox item
     */
     toggleSelect: function() {
+      this.check = 1;
       var select = this.selectAll;
       this.data.forEach(function(item) {
 
@@ -225,9 +227,9 @@ export default {
       show information of specified row 
       that is double clicked 
       */
-    onRowDbClick() {
+    onRowDbClick(item) {
       try {
-        this.addFunction();
+        this.funcShowDialog(item);
       } catch (error) {
         console.log("error");
       }

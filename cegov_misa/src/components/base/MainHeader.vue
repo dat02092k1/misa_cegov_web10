@@ -22,8 +22,8 @@
         </div>
       </div>
       <div class="func-right">
-        
-        <button v-if="isShowBtnAdd" @click="showDialog" class="btn btn__add-new">
+        <button @click="testBtn" v-if="!isShowBtnAdd">Tam</button>
+        <button hidden v-if="isShowBtnAdd" @click="showDialog" class="btn btn__add-new">
           <div class="icon__plus plus"></div>
           <div class="showDialog__title">Thêm danh hiệu</div>    
         </button>
@@ -35,7 +35,7 @@
 <script>
 export default {
   name: "MainHeader",
-  props: ["addFunction"],
+  props: ["addFunction", "testProp"],
   /*
   Click button "Thêm danh hiệu"
   Display MainDialog components 
@@ -44,6 +44,9 @@ export default {
   methods: {
     showDialog() {
       this.$emit("onAddClick");             
+    },
+    testBtn() {
+      alert(this.testProp)
     }
   },
   data() {
