@@ -1,0 +1,104 @@
+.btn__search {
+  height: 24px;
+  width: 24px;
+  content: "";
+  position: absolute;
+  right: 0;
+  background: transparent url(../../assets/icons_cegov/sprites.06b14dc5.svg)
+    no-repeat;
+}
+
+.search {
+  right: 5px;
+  background-position: -289px -24px;
+}
+.btn__add-new {
+  background-color: #2979ff;
+  color: #ffffff;
+  border: none;
+  position: relative;
+  width: 158px;
+  min-height: 36px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn__add-new:hover {
+  background-color: #1a73e8;
+  cursor: pointer;
+}
+
+.btn {
+  border-radius: 4px;
+  min-width: 96px;
+  min-height: 36px;
+  text-align: center;
+  padding: 9px 16px;
+  display: inline-block;
+  font-size: 13px;
+  margin: 0px 0px 0px 8px;
+}
+
+.btn__filter {
+  background-color: #ffffff;
+  color: #3d3f4e;
+  border: 1px solid #e4e6f1;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  height: 34px;
+}
+
+.btn__filter:hover {
+  cursor: pointer;
+  background-color: #f4f5f8;
+}
+
+.btn__use {
+    color: #2979ff;
+    background-color: #fff;
+    border: 1px solid #2979ff;
+    font-weight: 400;
+    font-size: 14px;
+    padding: 0 16px;
+    border-radius: 4px;
+    min-height: 36px;
+    min-width: 80px;
+    white-space: nowrap;
+}
+
+.btn__use:hover {
+    background-color: #f4f5f8;
+    cursor: pointer;
+}
+
+.btn__stop {
+    min-height: 36px;
+    min-width: 80px;
+    background-color: #fff;
+    border: none;
+    font-weight: 400;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.btn__stop:hover {
+    background-color: #f4f5f8;
+    cursor: pointer;
+}
+
+.btn__delete {
+    min-height: 36px;
+    min-width: 80px;
+    background-color: #fff;
+    color: red;
+    border: 1px solid red;
+    font-weight: 400;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.btn__delete:hover {
+    background-color: #f4f5f8;
+    cursor: pointer;
+}

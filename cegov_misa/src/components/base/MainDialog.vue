@@ -23,10 +23,11 @@
                   type="text"  
                   maxlength="255"
                   placeholder="Nhập tên danh hiệu thi đua"
+                  ref='focusMe'
                   v-model="title.name"
                   @blur="validate()"
                 />
-                <div class="feedback-invalid" v-if="errors.name">
+                <div class="feedback-invalid--name" v-if="errors.name">
                   {{ errors.name }}
                 </div>
               </div>
@@ -46,7 +47,9 @@
                         maxlength="25"
                         type="text"
                         class="ms-input-item flex"
-                        v-model="titleProp.titleCode"
+                      
+                        v-model="title.code"
+                        @blur="validate()"
                       />
                       <!-- <div
                         class="icon24 error error-icon"
@@ -57,6 +60,9 @@
                     <!---->
                   </div>
                 </div>
+                <div class="feedback-invalid--code" style="margin: 14px 0; color: red;" v-if="errors.code">
+                  {{ errors.code }}
+                </div>
               </div>
               <div class="flex mr2">
                 <label class="form-group-label d-flex">
@@ -66,7 +72,7 @@
                 <div class="flex-row flex-center">
                   <div class="flex">
                     <label
-                      class="text-black ms-checkbox ms-editor"
+                      class="text-black ms-checkbox ms-editor label-checkbox"
                       rules="required"
                       ><input
                         type="checkbox"
@@ -83,7 +89,7 @@
                   </div>
                   <div class="flex">
                     <label
-                      class="text-black ms-checkbox ms-editor"
+                      class="text-black ms-checkbox ms-editor label-checkbox"
                       rules="required"
                       ><input
                         type="checkbox"
@@ -100,11 +106,11 @@
                   </div>
                 </div>
                 <p
-                  style="color: red"
+                  style="color: red; margin-left: 19px;"
                   class="for-error terms-error"
                   v-if="multipeValueIp"
                 >
-                  You have to agree the terms and privacy condition.
+                  Đối tượng khen thưởng không được để trống.
                 </p>
               </div>
             </div>
@@ -126,12 +132,10 @@
                         v-model= "selected"
                       />   -->
                       <select class="ms-input-item flex">
-    <option value="0">Select car:</option>
-    <option value="1">Audi</option>
-    <option value="2">BMW</option>
-    <option value="3">Citroen</option>
-    <option value="4">Ford</option>
-    <option value="5">Honda</option>
+    <option value="0">Cấp Nhà nước:</option>
+    <option value="1">Cấp Tỉnh/tương đương</option>
+    <option value="2">Cấp Huyện/tương đương</option>
+    <option value="5">Cấp Xã/tương đương</option>
   </select>
                     </div>
                   </div>
@@ -145,12 +149,14 @@
                 <div class="flex-row flex-center">
                   <div class="flex">
                     <label
-                      class="text-black ms-checkbox ms-editor"
+                      class="text-black ms-checkbox ms-editor label-checkbox"
                       rules="required"
                       ><input
                         type="checkbox"
                         class="ms-checkbox-control"
-                        value="true"
+                        value="false"
+                        v-model="title.valueIp3"
+                        @blur="validate()"
                       /><span class="checkmark"></span
                       ><span class="ms-checkbox--text text-black"
                         >Thường xuyên</span
@@ -159,100 +165,32 @@
                   </div>
                   <div class="flex">
                     <label
-                      class="text-black ms-checkbox ms-editor"
+                      class="text-black ms-checkbox ms-editor label-checkbox"
                       rules="required"
                       ><input
                         type="checkbox"
                         class="ms-checkbox-control"
-                        value="true"
+                        value="false"
+                        v-model="title.valueIp3"
+                        @blur="validate()"
                       /><span class="checkmark"></span
                       ><span class="ms-checkbox--text text-black"
                         >Theo đợt</span
                       ></label
                     >
                   </div>
+                  
                 </div>
+                <p
+                  style="color: red; margin-left: 19px;"
+                  class="for-error terms-error"
+                  v-if="multipeValueIp2"
+                >
+                  Loại phong trào không được để trống.
+                </p>
               </div>
             </div>
-            <!-- <div class="row">
-              <div class="col">
-                <label for=""
-                  >Mã danh hiệu <span class="input--required">*</span></label
-                >
-                <input
-                  id="rewardCode"
-                  placeholder="Nhập mã danh hiệu"
-                  class="ip ip--title"
-                  type="text"
-                  v-model="title.code"
-                  v-bind:class="{'is-invalid': errors.code}"
-                  @blur="validate()"
-                />
-                <div class="feedback-invalid" v-if="errors.code">
-                  {{errors.code}}
-                </div>
-              </div>
-              <div class="col">
-                <label for=""
-                  >Đối tượng khen thưởng
-                  <span class="input--required">*</span></label
-                >
-                <div class="checkbox-select">
-                  <div class="select-left">
-                    <input
-                      type="checkbox"
-                      id="vehicle1"
-                      name="vehicle1"
-                      value="Bike"
-                    />
-                    <label for="vehicle1"> Cá nhân</label>
-                  </div>
-                  <div class="select-right">
-                    <input
-                      type="checkbox"
-                      id="vehicle2"
-                      name="vehicle2"
-                      value="Car"
-                    />
-                    <label for="vehicle2"> Tập thể</label>
-                  </div>
-                </div>
-              </div>
-            </div> -->
-            <!-- <div class="row">
-              <div class="col">
-                <label for=""
-                  >Cấp khen thưởng <span class="input--required">*</span></label
-                >
-                <input id="staffCode" class="ip ip--reward" type="text" />
-              </div>
-              <div class="col">
-                <label for=""
-                  >Loại phong trào áp dụng
-                  <span class="input--required">*</span></label
-                >
-                <div class="checkbox-select">
-                  <div class="select-left">
-                    <input
-                      type="checkbox"
-                      id="vehicle1"
-                      name="vehicle1"
-                      value="Bike"
-                    />
-                    <label for="vehicle1"> Thường xuyên</label>
-                  </div>
-                  <div class="select-right">
-                    <input
-                      type="checkbox"
-                      id="vehicle2"
-                      name="vehicle2"
-                      value="Car"
-                    />
-                    <label for="vehicle2"> Theo đợt</label>
-                  </div>
-                </div>
-              </div>
-            </div> -->
+            
             <div class="row1">
               <label for=""> Ghi chú </label>
               <div class="text-area_container">
@@ -289,6 +227,14 @@ export default {
       this.errors.valueIp2;
       return this.errors.valueIp1 && this.errors.valueIp2;
     },
+    multipeValueIp2() {
+      this.errors.valueIp3;
+      this.errors.valueIp4;
+      return this.errors.valueIp3 && this.errors.valueIp4;
+    }
+  },
+  mounted() {
+    this.$nextTick(() => this.$refs.focusMe.focus())
   },
   methods: {
     handleTermsState() {
@@ -314,7 +260,7 @@ export default {
           this.errors.name = "Tên danh hiệu thi đua không được để trống";
           isValid = false;
         }
-        console.log(isValid);
+        
         if (!this.title.code) {
           this.errors.code = "Mã danh hiệu thi đua không được để trống";
           isValid = false;
@@ -331,15 +277,15 @@ export default {
         }
         
 
-        // if (!this.title.valueIp3) {
-        //   this.errors.valueIp3 = "valueIp không được để trống";
-        //   isValid = false;
-        // }
+        if (!this.title.valueIp3) {
+          this.errors.valueIp3 = "valueIp không được để trống";
+          isValid = false;
+        }
 
-        // if (!this.title.valueIp4) {
-        //   this.errors.valueIp4 = "valueIp không được để trống";
-        //   isValid = false;
-        // }
+        if (!this.title.valueIp4) {
+          this.errors.valueIp4 = "valueIp không được để trống";
+          isValid = false;
+        }
         console.log(isValid);
         return isValid;
         
@@ -366,6 +312,7 @@ export default {
   created() {
     this.titleProp = this.titleSelected;
     this.title.name = this.titleProp.titleLabel;
+    this.title.code = this.titleProp.titleCode;
   },
   data() {
     return {
@@ -395,6 +342,7 @@ export default {
 </script>
 
 <style scoped>
+@import url(../../css/base/input.css);
 label {
   display: inline-block;
   width: 110px;
@@ -415,10 +363,15 @@ label {
 .feedback-invalid {
   color: red;
 }
+
+.feedback-invalid--name {
+  color: red;
+  margin-top: 14px;
+}
 .dialog-wrapper {
   position: absolute;
   width: 600px;
-  height: 550px;
+  height: auto;
   background-color: #fff;
   border-radius: 4px;
 }
@@ -493,7 +446,13 @@ label {
 }
 
 .ms-editor {
+  
   width: 100%;
+}
+
+.label-checkbox {
+  display: flex;
+  align-items: center;
 }
 
 .ms-editor .border {
@@ -512,11 +471,11 @@ label {
   align-items: center;
 }
 
-.ms-editor .border input:focus {
+/* .ms-editor .border input:focus {
   outline: none !important;
   border: 1px solid #2979ff;
   padding-right: 10px;
-}
+} */
 .flex-center {
   padding: 10px;
 }
@@ -530,6 +489,11 @@ label {
   border: 1px solid #2979ff;
 }
 
+.border input:focus{
+  outline: none !important;
+  
+  border: 1px solid #2979ff;
+}
 .ms-input-item {
   box-sizing: border-box;
   padding: 8px;
@@ -568,6 +532,11 @@ label {
 }
 
 .ip-solv input:focus {
+  outline: none !important;
+  border: 1px solid #2979ff;
+}
+
+.ip-solv input:hover {
   outline: none !important;
   border: 1px solid #2979ff;
 }
@@ -649,10 +618,20 @@ label {
   border: 1px solid #cecece;
 }
 
+.btn__close:hover {
+  background-color: #f4f5f8;
+  cursor: pointer;
+}
+
 .btn__save {
   background-color: #2979ff;
   color: #ffffff;
   border: none;
+}
+
+.btn__save:hover {
+  cursor: pointer;
+  background-color: #1a73e8;
 }
 
 .btn__addSave {
@@ -662,6 +641,7 @@ label {
 }
 
 .btn__addSave:hover {
+  background-color: #eef4ff;
   cursor: pointer;
 }
 

@@ -1,0 +1,19 @@
+.list-update {
+    display: flex;
+    text-decoration: none;
+    list-style: none;
+    align-items: center;
+}
+
+.list-update li {
+    margin: 5px;
+}
+
+.un__choose {
+    color: #2979ff; 
+}
+
+.un__choose:hover {
+    cursor: pointer;
+}
+

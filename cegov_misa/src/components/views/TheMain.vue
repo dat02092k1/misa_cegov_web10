@@ -1,8 +1,8 @@
 <template>
     <div class="main">
         <div class="main__wrap">
-          <MainHeader :testProp="testProp" :addFunction="onShowDialog" @onAddClick="onShowDialog" />  
-          <MainContent :funcShowDialog="showDialogDetails"  />
+          <MainHeader @emit = func :testProp="testProp" :addFunction="onShowDialog" @onAddClick="onShowDialog" />  
+          <MainContent :funcShowDialog="showDialogDetails" :showMultiAction ="isShowMulti"/>
         </div>  
         <MainDialog :titleSelected="titleSelected" :hideDialog="onHideDialog"  v-if="isShowDialog"/>
         <LoadingContent :showLoadingFunction="showLoading" v-show="isLoading" />

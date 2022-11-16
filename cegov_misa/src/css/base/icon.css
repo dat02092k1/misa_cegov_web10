@@ -1,0 +1,44 @@
+.icon {
+  content: "";
+  background: transparent url(../../assets/icons_cegov/sprites.06b14dc5.svg)
+    no-repeat;
+  height: 24px;
+  width: 24px;
+}
+
+.icon .ic__edit {
+  background-position: 0 -72px;
+}
+
+.icon__plus {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  height: 24px;
+  width: 24px;
+  content: "";
+  background: transparent url(../../assets/icons_cegov/sprites.06b14dc5.svg) no-repeat;
+}
+
+.plus {
+  background-position: -192px -96px;
+}
+
+.icon__filter {
+  position: absolute;
+  top: 5px;
+  left: 15px;
+  height: 24px;
+  width: 24px;
+  content: "";
+  background: transparent url(../../assets/icons_cegov/sprites.06b14dc5.svg)
+    no-repeat;
+}
+
+.filter {
+  background-position: -96px -48px;
+}
+
+.filter:hover {
+  cursor: pointer;
+}
